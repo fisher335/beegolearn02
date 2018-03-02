@@ -13,5 +13,6 @@ func init() {
     beego.Router("/file/", &controllers.MainController{},"get:File")
     beego.Router("/upload/", &controllers.MainController{},"get:Upload")
     beego.Router("/upload/", &controllers.MainController{},"post:UploadSave")
+    beego.Router("/record/", &controllers.MainController{},"get:Record")
 
 }

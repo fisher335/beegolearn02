@@ -3,28 +3,70 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"fmt"
-	"github.com/astaxie/beego/cache"
 	"math/rand"
 	"path"
-	"time"
+	"github.com/astaxie/beego/session"
+	"github.com/levigross/grequests"
+	"encoding/json"
 )
-
-var bm, err = cache.NewCache("memory", `{"interval":7000}`)
 
 type MainController struct {
 	beego.Controller
 }
 
-func (c *MainController) Get() {
+var globalSessions *session.Manager
 
-	c.Redirect("/list/",302)
+func Init() {
+	sessionConfig := &session.ManagerConfig{
+		CookieName:      "gosessionid",
+		EnableSetCookie: true,
+		Gclifetime:      3600,
+		Maxlifetime:     3600,
+		Secure:          false,
+		CookieLifeTime:  360000,
+		ProviderConfig:  "./tmp",
+	}
+	globalSessions, _ = session.NewManager("memory", sessionConfig)
+	go globalSessions.GC()
+}
+
+func (c *MainController) Get() {
+	Init()
+
+	var bm, err = globalSessions.SessionStart(c.Ctx.ResponseWriter, c.Ctx.Request)
+	defer bm.SessionRelease(c.Ctx.ResponseWriter)
+	bm.Set("token",GetToken())
+	var t = bm.Get("token")
+	var token string
+		if value, ok := t.(string); ok {
+	 token  = value
+	}
+	paras := &grequests.RequestOptions{Params: map[string]string{"start": "0", "count": "10", "method": "mobile_list"}, Headers: map[string]string{"Authorization": token}}
+	res, err := grequests.Get(url, paras)
+	fmt.Println(url)
+	if err != nil {
+		fmt.Println(err)
+	}
+	var record Record
+	//fmt.Println(res.String())
+	json.Unmarshal(res.Bytes(),&record)
+	fmt.Println(record.Rows)
+	c.Data["rows"]=record.Rows
+	c.TplName = "record.tpl"
+}
+
+func (c *MainController) Record() {
+	c.Redirect("/list/", 302)
 	c.StopRun()
+
 }
 
 func (c *MainController) List() {
-
+	var bm, err = globalSessions.SessionStart(c.Ctx.ResponseWriter, c.Ctx.Request)
+	defer bm.SessionRelease(c.Ctx.ResponseWriter)
+	bm.Set("token", GetToken())
 	head := make(map[string]interface{})
-	bm.Put("token",GetToken(),20*time.Hour)
+
 	for k, v := range c.Ctx.Request.Header {
 		head[k] = v
 	}
@@ -35,8 +77,10 @@ func (c *MainController) List() {
 	head["remote"] = c.Ctx.Request.RemoteAddr
 	head["RequestURI"] = c.Ctx.Request.RequestURI
 	//fmt.Println(head)
-	head["token"]=bm.Get("token")
+	//head["token"] = bm.Get("token")
+	head["token"] = bm.Get("token")
 	if err != nil {
+
 		fmt.Print("初始化内存缓存失败")
 	}
 	c.Data["head"] = head
@@ -54,7 +98,7 @@ func (c *MainController) Login() {
 }
 
 func (c *MainController) File() {
-
+	var bm, _ = globalSessions.SessionStart(c.Ctx.ResponseWriter, c.Ctx.Request)
 	file, _ := ListDir("static/videos")
 	c.Data["file"] = file
 	fmt.Println(bm.Get("token"))
@@ -75,4 +119,3 @@ func (c *MainController) UploadSave() {
 	c.SaveToFile("file", path.Join("static/videos", fileName))
 	c.Redirect("/file/", 302)
 }
-
