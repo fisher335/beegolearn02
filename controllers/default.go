@@ -35,11 +35,15 @@ func (c *MainController) Get() {
 
 	var bm, err = globalSessions.SessionStart(c.Ctx.ResponseWriter, c.Ctx.Request)
 	defer bm.SessionRelease(c.Ctx.ResponseWriter)
-	bm.Set("token",GetToken())
+	fmt.Println(bm.Get("token"))
+	if bm.Get("token") == nil {
+
+		c.Ctx.Redirect(302, "/login/")
+	}
 	var t = bm.Get("token")
 	var token string
-		if value, ok := t.(string); ok {
-	 token  = value
+	if value, ok := t.(string); ok {
+		token = value
 	}
 	paras := &grequests.RequestOptions{Params: map[string]string{"start": "0", "count": "10", "method": "mobile_list"}, Headers: map[string]string{"Authorization": token}}
 	res, err := grequests.Get(url, paras)
@@ -49,9 +53,9 @@ func (c *MainController) Get() {
 	}
 	var record Record
 	//fmt.Println(res.String())
-	json.Unmarshal(res.Bytes(),&record)
-	fmt.Println(record.Rows)
-	c.Data["rows"]=record.Rows
+	json.Unmarshal(res.Bytes(), &record)
+	//fmt.Println(record.Rows)
+	c.Data["rows"] = record.Rows
 	c.TplName = "record.tpl"
 }
 
@@ -64,7 +68,7 @@ func (c *MainController) Record() {
 func (c *MainController) List() {
 	var bm, err = globalSessions.SessionStart(c.Ctx.ResponseWriter, c.Ctx.Request)
 	defer bm.SessionRelease(c.Ctx.ResponseWriter)
-	bm.Set("token", GetToken())
+
 	head := make(map[string]interface{})
 
 	for k, v := range c.Ctx.Request.Header {
@@ -98,10 +102,10 @@ func (c *MainController) Login() {
 }
 
 func (c *MainController) File() {
-	var bm, _ = globalSessions.SessionStart(c.Ctx.ResponseWriter, c.Ctx.Request)
+	//var bm, _ = globalSessions.SessionStart(c.Ctx.ResponseWriter, c.Ctx.Request)
 	file, _ := ListDir("static/videos")
 	c.Data["file"] = file
-	fmt.Println(bm.Get("token"))
+	//fmt.Println(bm.Get("token"))
 	c.TplName = "file.tpl"
 }
 
@@ -118,4 +122,17 @@ func (c *MainController) UploadSave() {
 	f.Close()
 	c.SaveToFile("file", path.Join("static/videos", fileName))
 	c.Redirect("/file/", 302)
+}
+
+func (c *MainController) LoginPost() {
+	var bm, _ = globalSessions.SessionStart(c.Ctx.ResponseWriter, c.Ctx.Request)
+	var username = c.GetString("user")
+	var pass = c.GetString("passwd")
+	var token, err = GetToken(username, pass)
+	if  err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(token)
+	bm.Set("token", token)
+	c.Ctx.Redirect(302, "/")
 }

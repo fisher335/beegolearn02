@@ -1,4 +1,4 @@
-{{template "base.tpl"}}
+{{template "header.tpl"}}
 
 <table class="table table-bordered" align="center" sortable = "true" >
 	<caption>视频文件</caption>

@@ -1,4 +1,4 @@
-{{template "base.tpl"}}
+{{template "header.tpl"}}
 <table class="table table-bordered" align="center" sortable="true">
     <caption>信息查询</caption>
 

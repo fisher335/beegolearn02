@@ -33,10 +33,8 @@ func ListDir(dirPth string) (files []string, err error) {
 		files = append(files, dirPth+PthSep+fi.Name())
 
 	}
-
 	return files, nil
 }
-
 
 func TripleDesEncrypt(origData []byte) ([]byte, error) {
 	key := []byte("sr$*)(ruan$@lx100$#365#$")
@@ -57,21 +55,21 @@ func PKCS5Padding(ciphertext []byte, blockSize int) []byte {
 	return append(ciphertext, padtext...)
 }
 
-func GetToken() string {
-	username := "fengshaomin"
-	pass := "1"
+func GetToken(username, pass string) (string,  error)  {
 
 	//url := "http://127.0.0.1:8080/list"
 	paras := &grequests.RequestOptions{Params: map[string]string{"userName": username, "passWord": EncryptPass(pass), "method": "login"}}
 	res, err := grequests.Get(url, paras)
-	if err!=nil{
+	if err != nil {
 		fmt.Println(err)
+		var a=""
+		return a,err
 	}
 	var token Token
 
-	json.Unmarshal(res.Bytes(),&token)
+	json.Unmarshal(res.Bytes(), &token)
 
-	return token.Token
+	return token.Token,nil
 }
 
 func EncryptPass(orig string) string {
@@ -79,4 +77,3 @@ func EncryptPass(orig string) string {
 	encStr := base64.StdEncoding.EncodeToString(s)
 	return encStr
 }
-

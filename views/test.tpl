@@ -1,4 +1,4 @@
-{{template "base.tpl"}}
+{{template "header.tpl"}}
 
 <form class="form-horizontal col-md-10" role="form" action="" method="POST" id="info">
     <div class="form-group">
