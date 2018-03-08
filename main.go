@@ -6,8 +6,12 @@ import (
 	"github.com/astaxie/beego"
 )
 
-func main() {
+func indexadd(i int) (i1 int)  {
 
+	return i+1
+}
+func main() {
+	beego.AddFuncMap("addindex",indexadd)
 	beego.Run()
 }
 

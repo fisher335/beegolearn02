@@ -19,7 +19,7 @@
     <tr>
 
         <td hidden>{{.Record_id}}</td>
-         <td>{{$index}}</td>
+         <td>{{$index|addindex}}</td>
         <td>{{.Name}}</td>
         <td>{{.Size}}</td>
     {{if eq .Recordtype   "1" }}

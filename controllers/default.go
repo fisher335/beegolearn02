@@ -129,7 +129,7 @@ func (c *MainController) LoginPost() {
 	var username = c.GetString("user")
 	var pass = c.GetString("passwd")
 	var token, err = GetToken(username, pass)
-	if  err != nil {
+	if err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println(token)
