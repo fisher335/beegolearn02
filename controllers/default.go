@@ -32,10 +32,9 @@ func Init() {
 
 func (c *MainController) Get() {
 	Init()
-
 	var bm, err = globalSessions.SessionStart(c.Ctx.ResponseWriter, c.Ctx.Request)
 	defer bm.SessionRelease(c.Ctx.ResponseWriter)
-	fmt.Println(bm.Get("token"))
+	//fmt.Println(bm.Get("token"))
 	if bm.Get("token") == nil {
 
 		c.Ctx.Redirect(302, "/login/")
@@ -45,7 +44,7 @@ func (c *MainController) Get() {
 	if value, ok := t.(string); ok {
 		token = value
 	}
-	paras := &grequests.RequestOptions{Params: map[string]string{"start": "0", "count": "10", "method": "mobile_list"}, Headers: map[string]string{"Authorization": token}}
+	paras := &grequests.RequestOptions{Params: map[string]string{"start": "0", "count": "50", "method": "mobile_list"}, Headers: map[string]string{"Authorization": token}}
 	res, err := grequests.Get(url, paras)
 	fmt.Println(url)
 	if err != nil {
@@ -68,9 +67,7 @@ func (c *MainController) Record() {
 func (c *MainController) List() {
 	var bm, err = globalSessions.SessionStart(c.Ctx.ResponseWriter, c.Ctx.Request)
 	defer bm.SessionRelease(c.Ctx.ResponseWriter)
-
 	head := make(map[string]interface{})
-
 	for k, v := range c.Ctx.Request.Header {
 		head[k] = v
 	}
@@ -132,7 +129,6 @@ func (c *MainController) LoginPost() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(token)
 	bm.Set("token", token)
 	c.Ctx.Redirect(302, "/")
 }

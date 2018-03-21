@@ -14,7 +14,7 @@
 <nav class="navbar navbar-inverse" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-                       <a href="#" class="navbar-brand">
+                       <a href="/" class="navbar-brand">
                            网盘测试</a>
 				</div>
 
@@ -27,11 +27,21 @@
             <li><a href="/list/"><span class="glyphicon glyphicon-alert">请求头</span></a> </li>
             <!--<li><a href="/mongo/"><span class="glyphicon glyphicon-floppy-disk">mongo</span></a> </li>-->
         </ul>
+       <form class="navbar-form navbar-right">
+            <div class="input-group">
+              <input type="text" name="search" class="form-control" placeholder="Search text" value="search" >
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+              </span>
+            </div>
+          </form>
+          <ul id="nav-right-bar" class="nav navbar-nav navbar-right">
+          </ul>
     </div>
 </div>
 </nav>
 
 
 <div class="panel-body">
-
-
