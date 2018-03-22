@@ -14,7 +14,7 @@
 <nav class="navbar navbar-inverse" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-                       <a href="/" class="navbar-brand">
+                       <a href="/home/" class="navbar-brand">
                            网盘测试</a>
 				</div>
 
