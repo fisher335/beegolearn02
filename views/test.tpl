@@ -60,7 +60,7 @@
     </div>
 
     <div class="col-md-offset-3">
-        <label >默认下拉框的实例</label>
+        <label>默认下拉框的实例</label>
         <div class="dropdown">
             <select name="select1" id="select_test">
                 <option value="">--请选择--</option>
@@ -97,6 +97,7 @@
             }
         }
     }
+
     function check() {
         if ($("#depart").val().trim() == '' || $("#name").val().trim() == "") {
             alert("姓名和部门不能为空");
@@ -106,18 +107,21 @@
             return true;
         }
     }
+
     function checkAll(val) {
 
         $("input[name = 'check']").each(function () {
-            $(this).prop('checked',val);
+            $(this).prop('checked', val);
         })
     }
+
     function doselect() {
         $("#select_test").val('java');
     }
-     function doradio() {
-        $("#optionsRadios2").prop("checked",true);
+
+    function doradio() {
+        $("#optionsRadios2").prop("checked", true);
     }
 
 </script>
-        {{template "footer.tpl"}}
+{{template "footer.tpl"}}

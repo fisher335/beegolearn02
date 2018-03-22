@@ -18,3 +18,4 @@
     {{end}}
     </tbody>
 </table>
+{{template "footer.tpl"}}
