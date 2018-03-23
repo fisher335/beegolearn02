@@ -132,3 +132,9 @@ func (c *MainController) LoginPost() {
 	bm.Set("token", token)
 	c.Ctx.Redirect(302, "/")
 }
+
+func (c *MainController) RedireGithub() {
+
+	c.Redirect("https://github.com/fisher335/wiki/issues",302)
+	c.StopRun()
+}
