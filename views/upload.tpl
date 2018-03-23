@@ -30,5 +30,3 @@
 
     }
 </script>
-
-{{template "footer.tpl"}}
