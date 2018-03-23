@@ -1,44 +1,44 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<head lang="en">
+<head>
+    <title>一山一水</title>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-    <meta name='viewport' content="width=device-width,initial-scale=1">
-    <link href="../static/css/bootstrap.min.css" rel='stylesheet' type="text/css">
-
-    <title>beego测试</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="../static/bootstrap.min.css" rel='stylesheet' type="text/css">
+    <script src="../static/jquery.min.js" charset="utf-8"></script>
+    <script src="../static/bootstrap.min.js" charset="utf-8"></script>
+    <script src="../static/popper.min.js" charset="utf-8"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
+<body>
 
-<nav class="navbar navbar-inverse" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#example-navbar-collapse">
-                <span class="sr-only">切换导航</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/home/" >网盘测试</a>
-        </div>
-        <div class="collapse navbar-collapse" id="example-navbar-collapse">
-            <ul class="nav navbar-nav nav">
-                <li><a href="/test/"><span class="glyphicon glyphicon-baby-formula">测试</span></a></li>
-                <li><a href="/file/"><span class="glyphicon glyphicon-file">文件</span></a></li>
-                <li><a href="/upload/"><span class="glyphicon glyphicon-upload">上传</span></a></li>
-                <li><a href="/list/"><span class="glyphicon glyphicon-alert">请求头</span></a></li>
-                <!--<li><a href="/mongo/"><span class="glyphicon glyphicon-floppy-disk">mongo</span></a> </li>-->
-            </ul>
-            <form class="navbar-form navbar-right" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">提交</button>
-            </form>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">企业网盘</a>
 
-        </div>
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/test/">测试</a>
+            </li>
+            <li class="nav-item">
+            <li class="nav-link" href="/file/">文件</li>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/upload/">上传文件</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/list/">请求头</a>
+            </li>
+        {{/*<li><a href="/upload/"><span class="glyphicon glyphicon-upload">上传</span></a></li>*/}}
+        </ul>
     </div>
 </nav>
 
-
-<div class="panel-body">
+<div class="popover-body">
