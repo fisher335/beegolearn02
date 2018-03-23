@@ -16,5 +16,6 @@
         <td>{{$val}}</td>
     </tr>
     {{end}}
+
     </tbody>
 </table>
