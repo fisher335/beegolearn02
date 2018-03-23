@@ -6,8 +6,7 @@ import (
 )
 
 func init() {
-
-    beego.Include(&controllers.MainController{})
+	beego.Router("/home/", &controllers.MainController{},"get:RedirGithub")
     beego.Router("/home/", &controllers.MainController{})
     beego.Router("/list/", &controllers.MainController{},"get:List")
     beego.Router("/test/", &controllers.MainController{},"get:Test")
