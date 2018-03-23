@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../static/css/bootstrap-theme.min.css" rel="stylesheet">
     <script src="../static/js/bootstrap.min.js"></script>
 </head>
 <body>
