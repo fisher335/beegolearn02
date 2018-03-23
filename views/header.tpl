@@ -28,7 +28,7 @@
                 <a class="nav-link" href="/test/">测试</a>
             </li>
             <li class="nav-item">
-            <li class="nav-link" href="/file/">文件</li>
+           <a class="nav-link" href="/file/">上传文件</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/upload/">上传文件</a>
