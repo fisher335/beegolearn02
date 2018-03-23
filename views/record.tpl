@@ -1,5 +1,5 @@
 {{template "header.tpl"}}
-<table class="table table-bordered" align="center" sortable="true">
+<table class="table table-bordered table-responsive" align="center" >
     <caption>文件列表</caption>
 
     <thead>
