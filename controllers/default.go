@@ -136,5 +136,5 @@ func (c *MainController) LoginPost() {
 func (c *MainController) RedireGithub() {
 
 	c.Redirect("https://github.com/fisher335/wiki/issues",302)
-	c.StopRun()
+	c.StopRun() 
 }
