@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    beego.Include(&controllers.MainController{})
+    beego.Router("/", &controllers.MainController{})
     beego.Router("/home/", &controllers.MainController{})
     beego.Router("/list/", &controllers.MainController{},"get:List")
     beego.Router("/test/", &controllers.MainController{},"get:Test")
@@ -16,5 +16,6 @@ func init() {
     beego.Router("/upload/", &controllers.MainController{},"get:Upload")
     beego.Router("/upload/", &controllers.MainController{},"post:UploadSave")
     beego.Router("/record/", &controllers.MainController{},"get:Record")
+    beego.Router("/wiki/", &controllers.MainController{},"get:RedirGithub")
 
 }

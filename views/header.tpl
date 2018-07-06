@@ -26,6 +26,7 @@
                 <li><a href="/file/"><span class="glyphicon glyphicon-file">文件</span></a></li>
                 <li><a href="/upload/"><span class="glyphicon glyphicon-upload">上传</span></a></li>
                 <li><a href="/list/"><span class="glyphicon glyphicon-alert">请求头</span></a></li>
+                <li><a href="/wiki/"><span class="glyphicon glyphicon-alert">记事本</span></a></li>
                 <!--<li><a href="/mongo/"><span class="glyphicon glyphicon-floppy-disk">mongo</span></a> </li>-->
             </ul>
             <form class="navbar-form navbar-right" role="search">
